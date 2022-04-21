@@ -1,0 +1,81 @@
+// Emily Ye
+// 
+import java.util.*;
+
+public class HW2 {
+  
+  // returns average of all inputs in double array
+  public static double average(double[] a) {
+    if(a.length==0)
+      throw new NoSuchElementException();
+    double sum = 0; // tracks sum of elements
+    for(int i = 0; i < a.length; i++) {
+      sum += a[i];
+    }
+    return sum/a.length;
+  }
+  
+  // returns average of all values within the 2D array
+  public static double average(double[][] a) {
+    if(a.length==0)
+      throw new NoSuchElementException();
+    boolean empty = true;
+    for(double[] b : a) {
+      if(b!=null)
+        empty = false;
+    }
+    if(empty == true)
+      throw new NoSuchElementException();
+    double sum = 0; // tracks sum of elements
+    int count = 0; // counts number of elements
+    for(int i = 0; i < a.length; i++) {
+      if(a[i] != null) {
+        for(int j = 0; j < a[i].length; j++) {
+          sum += a[i][j];
+          count++;
+        }
+      }
+    }
+    return sum/count;
+  }
+  
+  // returns the number of words in a String
+  public static int countWords(String s) {
+    if(s.length() == 0)
+      return 0;
+    int words = 0;
+    if(s.length() > 1) {
+      for(int i = 0; i < s.length() - 1; i++) {
+        if(s.charAt(i+1) == ' ' && s.charAt(i) != ' ')
+          words++;
+      }
+    }
+    if(s.charAt(s.length()-1) != ' ')
+      words++;
+    return words;
+  }
+  
+  // returns a string truncated at the end of desired length
+  public static String truncate(String s, int n) {
+    if(n >= s.length())
+      return s;
+    StringBuilder builder = new StringBuilder();
+    for(int i = 0; i < n; i++) {
+      builder.append(s.charAt(i));
+    }
+    if(countWords(builder.toString()) <= 1) {
+      if(countWords(s)>1 || s.charAt(s.length()-1) == ' ') {
+        int i = n;
+        do{
+          builder.append(s.charAt(i));
+          i++;
+        } while(!(s.charAt(i) != ' ' && s.charAt(i+1) == ' '))
+        return builder.toString();
+      }
+      return s;
+    }
+//    if(s.charAt(n-1) != ' ' && s.charAt(n) == ' ')
+//      return builder.toString();
+    return "???";
+  }
+}
