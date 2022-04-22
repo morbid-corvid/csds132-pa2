@@ -10,8 +10,8 @@ public class HW2 {
         if(a.length == 0)
             throw new NoSuchElementException();
         double sum = 0; // tracks sum of elements
-        for(int i = 0; i < a.length; i++) { // loop through array and add each element to sum
-            sum += a[i];
+        for(double d : a) { // loop through array and add each element to sum
+            sum += d;
         }
         return sum/a.length;
     }
@@ -25,14 +25,14 @@ public class HW2 {
             if(b!=null && b.length != 0)
                 empty = false;
         }
-        if(empty == true)
+        if(empty)
             throw new NoSuchElementException();
         double sum = 0; // tracks sum of elements
         int count = 0; // counts number of elements
-        for(int i = 0; i < a.length; i++) {
-            if(a[i] != null) {
-                for(int j = 0; j < a[i].length; j++) { //loop through 2D array and add each element to sum, also track how many elements there are
-                    sum += a[i][j];
+        for(double[] d : a) {
+            if(d != null) {
+                for(double o : d) { //loop through 2D array and add each element to sum, also track how many elements there are
+                    sum += o;
                     count++;
                 }
             }
@@ -57,6 +57,13 @@ public class HW2 {
     public static String truncate(String s, int n) {
         if(s.length() <= n)
             return s;
+        StringBuilder build = new StringBuilder();
+        if(countWords(s) == 0) {
+            for (int i = 0; i < n; i++) {
+                build.append(s.charAt(i));
+            }
+            return build.toString();
+        }
         int index = 0; // index that s should be truncated at
         boolean firstWord = true; //track whether we are iterating through the first word
         for(int i = 0; i < s.length(); i++) {
@@ -65,7 +72,6 @@ public class HW2 {
                 firstWord = false;
             }
         }
-        StringBuilder build = new StringBuilder();
         for(int i = 0; i <= index; i++)
             build.append(s.charAt(i));
         return build.toString();
@@ -75,9 +81,11 @@ public class HW2 {
     public static String padString(String s, int i) {
         return "???";
     }
-    
+
+    // helper method
+    // checks if the index i in String s is the last letter of a word
     public static boolean isEnd(String s, int i) {
-    	return s.charAt(i) != ' ' && (i == s.length() - 1 || s.charAt(i + 1) == ' ');
+        return s.charAt(i) != ' ' && (i == s.length() - 1 || s.charAt(i + 1) == ' ');
     }
 
     // prints the string to the screen so that each line is exactly a specified number of characters wide
