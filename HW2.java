@@ -57,15 +57,18 @@ public class HW2 {
     public static String truncate(String s, int n) {
         if(s.length() <= n)
             return s;
-        int index; // index that s should be truncated at
+        int index = 0; // index that s should be truncated at
         boolean firstWord = true; //track whether we are iterating through the first word
-        for(int i = 0; i < s.length() - 1; i++) {
-            if((s.charAt(i+1) == ' ' && s.charAt(i) != ' ') && (i < n || firstWord)) {
+        for(int i = 0; i < s.length(); i++) {
+            if((isEnd(s, i)) && (i < n || firstWord)) {
                 index = i;
                 firstWord = false;
             }
         }
-        return "???";
+        StringBuilder build = new StringBuilder();
+        for(int i = 0; i <= index; i++)
+            build.append(s.charAt(i));
+        return build.toString();
     }
 
     // returns a string with given amount of extra spaces in between
