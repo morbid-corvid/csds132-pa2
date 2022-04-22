@@ -66,4 +66,8 @@ public class HW2 {
     public static String padString(String s, int i) {
         return "???";
     }
+    
+    public static boolean isEnd(String s, int i) {
+    	return s.charAt(i) != ' ' && (i == s.length() - 1 || s.charAt(i + 1) == ' ');
+    }
 }
