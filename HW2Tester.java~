@@ -31,6 +31,14 @@ public class HW2Tester {
        thrown = true;
      }
      assertTrue(thrown);
+     // tests empty 5x0 matrix
+     thrown = false;
+     try {
+       HW2.average(new double[5][0]);
+     } catch (NoSuchElementException e) {
+       thrown = true;
+     }
+     assertTrue(thrown);
      // tests matrix with 5 rows with 0 elements in each
      thrown = false;
      try {
@@ -41,6 +49,8 @@ public class HW2Tester {
      assertTrue(thrown);
      // tests matrix with some empty rows and some not empty rows
      assertEquals(3.5, HW2.average(new double[][]{{},{2, 3},{},{4, 5},{}}), .0000001);
+     // tests 5x5 matrix of zeroes
+     assertEquals(0.0, HW2.average(new double[5][5]), .0000001);
      // tests 1 element
      assertEquals(1.5, HW2.average(new double[][]{{1.5}}), .0000001);
      // tests 1 element in each row
@@ -71,14 +81,21 @@ public class HW2Tester {
      assertEquals(5, HW2.countWords("chicken3 fart b3 p00pin h4rd"));
    }
    
-   @Test
+   /*@Test
    public void testTruncate() {
+     // should return one word
      // asks for desired length 0
      assertEquals("      Hi", HW2.truncate("      Hi      ", 0));
      // desired length ends perfectly after first word
-     assertEquals("      Hi", HW2.truncate("      Hi      ", 8));
-     // truncates first word
+     assertEquals(" A", HW2.truncate(" A ", 2));
+     // desired length ends perfectly after first word multiple words
+     assertEquals("i", HW2.truncate("i love muffins", 2));
+     // truncates first word with 0
+     assertEquals("banana", HW2.truncate("banana ", 0));
+     // truncates first word in middle
+     assertEquals("banana", HW2.truncate("banana ", 4));
      
-     assertEquals("banana", HW2.truncate("banana", 0));
-   }
+     // 
+     
+   } */
  }

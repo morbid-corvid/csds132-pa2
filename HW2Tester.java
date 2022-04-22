@@ -1,3 +1,6 @@
+// Emily Ye
+// Test the HW2 file
+
 import java.util.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -6,7 +9,7 @@ public class HW2Tester {
 
    @Test
    public void testAverage1D() {
-     // tests 0 elements
+     // 1) tests 0 elements
      boolean thrown = false;
      try {
        HW2.average(new double[]{});
@@ -14,16 +17,21 @@ public class HW2Tester {
        thrown = true;
      }
      assertTrue(thrown);
-     // tests 1 element
+     // 2) tests 1 element
      assertEquals(1.5, HW2.average(new double[]{1.5}), .0000001);
-     // tests many elements
+     // 3) tests 1 element of 0
+     assertEquals(0, HW2.average(new double[]{0}), .0000001);
+     // 4) tests many elements
      assertEquals(1.25, HW2.average(new double[]{1.1, 1.2, 1.3, 1.4}), .0000001);
-     // tests 
+     // 5) tests many elements that are all 0
+     assertEquals(0, HW2.average(new double[]{0, 0, 0, 0, 0}), .0000001);
+     // 6) tests negative numbers
+     assertEquals(0, HW2.average(new double[]{5, 15, -18, 0, -2}), .0000001);
    }
    
    @Test
    public void testAverage2D() {
-     // tests empty matrix
+     // 1) tests empty matrix
      boolean thrown = false;
      try {
        HW2.average(new double[0][0]);
@@ -31,7 +39,7 @@ public class HW2Tester {
        thrown = true;
      }
      assertTrue(thrown);
-     // tests empty 5x0 matrix
+     // tests empty 5x1 matrix
      thrown = false;
      try {
        HW2.average(new double[5][0]);
@@ -97,5 +105,5 @@ public class HW2Tester {
      
      // 
      
-   } */
+   }*/
  }
