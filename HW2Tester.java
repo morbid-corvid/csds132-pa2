@@ -39,7 +39,7 @@ public class HW2Tester {
        thrown = true;
      }
      assertTrue(thrown);
-     // tests empty 5x1 matrix
+     // tests empty 5x0 matrix
      thrown = false;
      try {
        HW2.average(new double[5][0]);
@@ -89,7 +89,7 @@ public class HW2Tester {
      assertEquals(5, HW2.countWords("chicken3 fart b3 p00pin h4rd"));
    }
    
-   /*@Test
+   @Test
    public void testTruncate() {
      // should return one word
      // asks for desired length 0
@@ -105,5 +105,5 @@ public class HW2Tester {
      
      // 
      
-   }*/
+   }
  }

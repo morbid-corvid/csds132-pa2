@@ -46,19 +46,25 @@ public class HW2 {
         int words = 0; // tracks number of words
         if(s.length() == 0)
             return 0;
-        else if(s.length() > 1) {
-            for(int i = 0; i < s.length() - 1; i++) { // loops through and if it finds a letter followed by a space, add 1 to words
-                if(s.charAt(i+1) == ' ' && s.charAt(i) != ' ')
-                    words++;
-            }
+        for(int i = 0; i < s.length(); i++) { // loops through and if it finds a letter followed by a space, add 1 to words
+            if(isEnd(s, i))
+                words++;
         }
-        if(s.charAt(s.length()-1) != ' ') //if there's a space at the end, also add 1 to words
-            words++;
         return words;
     }
 
     // returns a string truncated at the end of desired length
     public static String truncate(String s, int n) {
+        if(s.length() <= n)
+            return s;
+        int index; // index that s should be truncated at
+        boolean firstWord = true; //track whether we are iterating through the first word
+        for(int i = 0; i < s.length() - 1; i++) {
+            if((s.charAt(i+1) == ' ' && s.charAt(i) != ' ') && (i < n || firstWord)) {
+                index = i;
+                firstWord = false;
+            }
+        }
         return "???";
     }
 
@@ -69,5 +75,10 @@ public class HW2 {
     
     public static boolean isEnd(String s, int i) {
     	return s.charAt(i) != ' ' && (i == s.length() - 1 || s.charAt(i + 1) == ' ');
+    }
+
+    // prints the string to the screen so that each line is exactly a specified number of characters wide
+    public static void prettyPrint(String s, int i) {
+
     }
 }
