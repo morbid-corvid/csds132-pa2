@@ -78,8 +78,11 @@ public class HW2 {
     }
 
     // returns a string with given amount of extra spaces in between
-    public static String padString(String s, int i) {
-        return "???";
+    public static String padString(String s, int n) {
+        int words = countWords(s); // num words in s
+        int spaces = (n - s.length()) / (words - 1);
+        int remainder = (n - s.length()) % (words - 1);
+        
     }
 
     // helper method
@@ -89,7 +92,7 @@ public class HW2 {
     }
 
     // prints the string to the screen so that each line is exactly a specified number of characters wide
-    public static void prettyPrint(String s, int i) {
+    public static void prettyPrint(String s, int n) {
 
     }
 }
