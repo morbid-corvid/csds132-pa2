@@ -104,10 +104,9 @@ public class HW2 {
 
     // prints the string to the screen so that each line is exactly a specified number of characters wide
     public static void prettyPrint(String s, int n) {
-        String str = s;
-        while(str.length() != 0) {
-            System.out.println(padString(truncate(str, n), n));
-            str = deleteTo(str, truncate(str, n).length());
+        while(s.length() != 0) { // loop through taking out chunks of s and printing it neatly
+            System.out.println(padString(truncate(s, n), n));
+            s = deleteTo(s, truncate(s, n).length() + 1);
         }
     }
 

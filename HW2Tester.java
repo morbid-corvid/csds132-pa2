@@ -162,13 +162,4 @@ public class HW2Tester {
         assertTrue(thrown);
     }
 
-    @Test
-    public void testPrettyPrint() {
-        System.setOut(new PrintStream(outRedirect));
-
-        assertEquals(outRedirect.toString(), );
-
-        System.setOut(outOriginal);
-    }
-
 }
