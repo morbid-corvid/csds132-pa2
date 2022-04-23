@@ -1,6 +1,8 @@
 // Emily Ye
 // Test the HW2 file
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.*;
 
 import org.junit.Test;
@@ -8,6 +10,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class HW2Tester {
+
+    private final ByteArrayOutputStream outRedirect = new ByteArrayOutputStream();
+    private final PrintStream outOriginal = System.out;
+
 
     @Test
     public void testAverage1D() {
@@ -129,4 +135,40 @@ public class HW2Tester {
         // string of alternating numbers and spaces
         assertEquals("0 0", HW2.truncate("0 0 0 0 0", 3));
     }
+
+    @Test
+    public void testPadString() {
+        // String with 4 words and 2 extra spaces
+        assertEquals("This  really   is   fun!", HW2.padString("This really is fun!", 24));
+        // String with 4 words and 1 extra space
+        assertEquals("This  really  is   fun!", HW2.padString("This really is fun!", 23));
+        // String with 4 words and even padding
+        assertEquals("This  really  is  fun!", HW2.padString("This really is fun!", 22));
+        // One word string
+        assertEquals(" hello    ", HW2.padString(" hello    ", 3));
+        // Empty string case
+        assertEquals("", HW2.padString("", 0));
+        // Two word case
+        assertEquals("    b    b    ", HW2.padString("    b b    ", 14));
+        // No extra spaces needed
+        assertEquals("    b    b    ", HW2.padString("    b    b    ", 14));
+        // Desired length is wrong
+        boolean thrown = false;
+        try {
+            HW2.padString("    b    b    ", 13);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+
+    @Test
+    public void testPrettyPrint() {
+        System.setOut(new PrintStream(outRedirect));
+
+        assertEquals(outRedirect.toString(), );
+
+        System.setOut(outOriginal);
+    }
+
 }

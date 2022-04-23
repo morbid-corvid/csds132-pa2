@@ -79,20 +79,50 @@ public class HW2 {
 
     // returns a string with given amount of extra spaces in between
     public static String padString(String s, int n) {
-        int words = countWords(s); // num words in s
-        int spaces = (n - s.length()) / (words - 1);
-        int remainder = (n - s.length()) % (words - 1);
-        
-    }
+        int words = countWords(s); // number of words in s
+        if(words == 1 || s.length() == 0)
+            return s;
+        int spaces = (n - s.length()) / (words - 1); // smaller number of spaces to add between each word
+        int rem = (n - s.length()) % (words - 1); // number of words that need an extra added space
+        int wi = 0; // word index
 
-    // helper method
-    // checks if the index i in String s is the last letter of a word
-    public static boolean isEnd(String s, int i) {
-        return s.charAt(i) != ' ' && (i == s.length() - 1 || s.charAt(i + 1) == ' ');
+        if(spaces < 0)
+            throw new IllegalArgumentException();
+
+        StringBuilder build = new StringBuilder();
+
+        for(int i = 0; i < s.length(); i++) { // loop through string to look for word endings and add spaces
+            build.append(s.charAt(i));
+            if(isEnd(s, i) && (wi < words - 1)) {
+                wi++;
+                for (int j = 0; j < spaces + (wi)/(words - rem); j++)
+                    build.append(" ");
+            }
+        }
+        return build.toString();
     }
 
     // prints the string to the screen so that each line is exactly a specified number of characters wide
     public static void prettyPrint(String s, int n) {
+        String str = s;
+        while(str.length() != 0) {
+            System.out.println(padString(truncate(str, n), n));
+            str = deleteTo(str, truncate(str, n).length());
+        }
+    }
 
+    // helper method for String manipulation methods
+    // checks if the index i in String s is the last letter of a word
+    private static boolean isEnd(String s, int i) {
+        return s.charAt(i) != ' ' && (i == s.length() - 1 || s.charAt(i + 1) == ' ');
+    }
+
+    // helper method
+    // returns indexes a to s.length()-1 of String s
+    private static String deleteTo(String s, int a) {
+        StringBuilder build = new StringBuilder();
+        for(int i = a; i < s.length(); i++)
+            build.append(s.charAt(i));
+        return build.toString();
     }
 }
